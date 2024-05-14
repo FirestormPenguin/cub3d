@@ -6,14 +6,14 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/04/23 16:20:10 by egiubell         ###   ########.fr        #
+#    Updated: 2024/05/14 17:00:10 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =		cub3d
 
 CC =		gcc -g
-FLAGS =		-Wall -Wextra -Werror -I./include
+FLAGS =		-Wall -Wextra -Werror -I./include -o
 SRC_DIR =	./src
 OBJ_DIR =	./obj
 

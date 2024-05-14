@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/04/23 16:12:04 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:06:45 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ typedef struct s_vars {
 	int		line;
 	int		column;
 	int		player;
-	int		index_collect;
-	int		exit;
 }	t_vars;
 
 typedef struct s_game {
@@ -57,14 +55,13 @@ typedef struct s_game {
 # define ANIMATIONDELAY 10000
 
 /*init map*/
-int		get_map(char *path, t_game *game);
+int		init_map(char *path, t_game *game);
 int		count_line(char *path);
 int		count_column(char *path);
 
 /*checks_errors*/
 void	check_errors(t_game *game);
-int		checks_vars(t_game *game);
-int		checks_format(t_game *game);
+void	checks_vars(t_game *game);
 void	error(t_game *game, int id);
 
 /*exit_manage*/

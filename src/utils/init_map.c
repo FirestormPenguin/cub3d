@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:13:49 by egiubell          #+#    #+#             */
-/*   Updated: 2024/04/23 17:05:22 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:06:45 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	count_line(char *path)
 	return (i);
 }
 
-int	get_map(char *path, t_game *game)
+int	init_map(char *path, t_game *game)
 {
 	int		i;
 	int		fd;

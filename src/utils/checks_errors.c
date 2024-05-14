@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/04/23 16:07:16 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:58:12 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,81 @@ void	error(t_game *game, int id)
 		ft_printf("Found invalid character\n");
 	else if (id == 3)
 		ft_printf("Number of variables invalid\n");
-	else if (id == 4)
-		ft_printf("Lines/Columns format invalid\n");
 	free_vars(game);
 	exit(0);
 }
 
-int	checks_format(t_game *game)
+void	check_full(t_game *game, int i, int j, char **tmp_map)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < game->vars->line)
+	if (game->vars->map[i + 1][j] && game->vars->map[i + 1][j] != '1' && tmp_map[i + 1][j] != '0')
 	{
-		j = 0;
-		while (game->vars->map[i][j])
-		{
-			j++;
-		}
-		if (j != game->vars->column + 1)
-			return (1);
-		i++;
+		tmp_map[i + 1][j] = '0';
+		check_full(game, i + 1, j, tmp_map);
 	}
-	return (0);
+	if (game->vars->map[i - 1][j] && game->vars->map[i - 1][j] != '1' && tmp_map[i - 1][j] != '0')
+	{
+		tmp_map[i - 1][j] = '0';
+		check_full(game, i - 1, j, tmp_map);
+	}
+	if (game->vars->map[i][j + 1] && game->vars->map[i][j + 1] != '1' && tmp_map[i][j + 1] != '0')
+	{
+		tmp_map[i][j + 1] = '0';
+		check_full(game, i, j + 1, tmp_map);
+	}
+	if (game->vars->map[i][j - 1]&& game->vars->map[i][j - 1] != '1' && tmp_map[i][j - 1] != '0')
+	{
+		tmp_map[i][j - 1] = '0';
+		check_full(game, i, j - 1, tmp_map);
+	}
+
+	if (game->vars->map[i][j] != '0'
+		&& game->vars->map[i][j] != '1'
+		&& game->vars->map[i][j] != 'N'
+		&& game->vars->map[i][j] != 'S'
+		&& game->vars->map[i][j] != 'E'
+		&& game->vars->map[i][j] != 'W'
+		&& game->vars->map[i][j] != ' ')
+		tmp_map[i][j] = '0';
+	else
+		tmp_map[i][j] = '1';
+
 }
 
-int	checks_vars(t_game *game)
+void	check_edges(t_game *game, int i, int j)
+{
+	char **tmp_map;
+	int i1;
+	int j1;
+
+	tmp_map = malloc (sizeof(char *) * game->vars->line + 1);
+	i1 = 0;
+	while (tmp_map[i1])
+	{
+		tmp_map[i1] = malloc (sizeof(char) * game->vars->column + 1);
+		i1++;
+	}
+	if (game->vars->map[i][j + 1] != '1' && game->vars->map[i][j + 1] != ' ')
+		check_full(game->vars->map, i , j, tmp_map);
+	else if (game->vars->map[i + 1][j] != '1' && game->vars->map[i + 1][j] != ' ')
+		check_full(game->vars->map, i , j, tmp_map);
+	else if (game->vars->map[i + 1][j + 1] != '1' && game->vars->map[i + 1][j + 1] != ' ')
+		check_full(game->vars->map, i, j, tmp_map);
+
+	i1 = 0;
+	j1 = 0;
+	while (tmp_map[i1])
+	{
+		while (tmp_map[i1][j1])
+		{
+			if (tmp_map[i1][j1] == 0)
+				error(game, 1);
+			j1++;
+		}
+		i1++;
+	}
+}
+
+void	check_characters(t_game *game)
 {
 	int	i;
 	int	j;
@@ -59,56 +106,37 @@ int	checks_vars(t_game *game)
 		j = 0;
 		while (j < game->vars->column)
 		{
-			if (game->vars->map[i][j] == 'P')
+			if (game->vars->map[i][j] == 'N' || game->vars->map[i][j] == 'S'
+				|| game->vars->map[i][j] == 'E' || game->vars->map[i][j] == 'W')
 				game->vars->player++;
-			else if (game->vars->map[i][j] == 'C')
-				game->vars->index_collect++;
-			if (game->vars->map[i][j] == 'E')
-				game->vars->exit++;
-			j++;
-		}
-		i++;
-	}
-	if (game->vars->player < 1 || game->vars-> index_collect < 1
-		|| game->vars->exit < 1 || game->vars->player > 1
-		|| game->vars-> exit > 1)
-		return (1);
-	return (0);
-}
-
-void	check_number(t_game *game, int i, int j)
-{
-	if ((game->vars->map[0][j] != '1'
-		|| game->vars->map[game->vars->line - 1][j] != '1')
-		|| (game->vars->map[i][0] != '1'
-		|| game->vars->map[i][game->vars->column - 1] != '1'))
-		error(game, 1);
-}
-
-void	check_errors(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->vars->line)
-	{
-		j = 0;
-		while (j < game->vars->column)
-		{
-			check_number(game, i, j);
-			if (game->vars->map[i][j] != '0' && game->vars->map[i][j] != '1' &&
-					game->vars->map[i][j] != 'C' && game->vars->map[i][j] != 'E'
-					&& game->vars->map[i][j] != 'P'
-					&& game->vars->map[i][j] != 'M'
-					&& game->vars->map[i][j] != 'A')
+			if (game->vars->map[i][j] != '0' && game->vars->map[i][j] != '1'
+					&& game->vars->map[i][j] != 'N' && game->vars->map[i][j] != 'S'
+					&& game->vars->map[i][j] != 'E' && game->vars->map[i][j] != 'W'
+					&& game->vars->map[i][j] != ' ')
 				error(game, 2);
 			j++;
 		}
 		i++;
 	}
-	if (checks_vars(game) == 1)
+	if (game->vars->player < 1 || game->vars->player > 1)
 		error(game, 3);
-	if (checks_format(game) == 1)
-		error(game, 4);
+}
+
+void	check_errors(t_game *game)
+{
+	int i;
+	int j;
+
+	while (i < game->vars->line)
+	{
+		j = 0;
+		while (j < game->vars->column)
+		{
+			if (game->vars->map[i][j] == '1')
+				check_edges(game, i , j);
+			j++;
+		}
+		i++;
+	}
+	check_characters(game);
 }
