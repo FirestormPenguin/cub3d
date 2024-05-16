@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:58:19 by egiubell          #+#    #+#             */
-/*   Updated: 2024/04/23 16:07:11 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:17:21 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_vars(t_game *game)
 	}
 	free(game->vars->map);
 	free(game->vars);
-	free(game);
+	//free(game);
 }
 
 int	close_generic(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:23:33 by egiubell          #+#    #+#             */
-/*   Updated: 2024/04/23 16:09:41 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:33:05 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stddef.h>
-#include "../../include/cub3d.h"
+# include "../../include/cub3d.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000

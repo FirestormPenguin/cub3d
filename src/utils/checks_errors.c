@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/14 17:58:12 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:29:00 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	error(t_game *game, int id)
 	else if (id == 2)
 		ft_printf("Found invalid character\n");
 	else if (id == 3)
-		ft_printf("Number of variables invalid\n");
+		ft_printf("Too much players characters\n");
 	free_vars(game);
 	exit(0);
 }
@@ -75,11 +75,11 @@ void	check_edges(t_game *game, int i, int j)
 		i1++;
 	}
 	if (game->vars->map[i][j + 1] != '1' && game->vars->map[i][j + 1] != ' ')
-		check_full(game->vars->map, i , j, tmp_map);
+		check_full(game, i , j, tmp_map);
 	else if (game->vars->map[i + 1][j] != '1' && game->vars->map[i + 1][j] != ' ')
-		check_full(game->vars->map, i , j, tmp_map);
+		check_full(game, i , j, tmp_map);
 	else if (game->vars->map[i + 1][j + 1] != '1' && game->vars->map[i + 1][j + 1] != ' ')
-		check_full(game->vars->map, i, j, tmp_map);
+		check_full(game, i, j, tmp_map);
 
 	i1 = 0;
 	j1 = 0;
@@ -101,11 +101,13 @@ void	check_characters(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < game->vars->line)
+	while (game->vars->map[i])
 	{
 		j = 0;
-		while (j < game->vars->column)
+		while (game->vars->map[i][j])
 		{
+			if (game->vars->map[i][j] == '\n')
+				break ;
 			if (game->vars->map[i][j] == 'N' || game->vars->map[i][j] == 'S'
 				|| game->vars->map[i][j] == 'E' || game->vars->map[i][j] == 'W')
 				game->vars->player++;
@@ -113,7 +115,10 @@ void	check_characters(t_game *game)
 					&& game->vars->map[i][j] != 'N' && game->vars->map[i][j] != 'S'
 					&& game->vars->map[i][j] != 'E' && game->vars->map[i][j] != 'W'
 					&& game->vars->map[i][j] != ' ')
-				error(game, 2);
+				{
+					ft_printf("Found correct, position [%d][%d]\n", i, j);
+					error(game, 2);
+				}
 			j++;
 		}
 		i++;
