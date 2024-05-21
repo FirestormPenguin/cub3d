@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/16 17:29:00 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/21 23:30:26 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,76 +25,6 @@ void	error(t_game *game, int id)
 	exit(0);
 }
 
-void	check_full(t_game *game, int i, int j, char **tmp_map)
-{
-	if (game->vars->map[i + 1][j] && game->vars->map[i + 1][j] != '1' && tmp_map[i + 1][j] != '0')
-	{
-		tmp_map[i + 1][j] = '0';
-		check_full(game, i + 1, j, tmp_map);
-	}
-	if (game->vars->map[i - 1][j] && game->vars->map[i - 1][j] != '1' && tmp_map[i - 1][j] != '0')
-	{
-		tmp_map[i - 1][j] = '0';
-		check_full(game, i - 1, j, tmp_map);
-	}
-	if (game->vars->map[i][j + 1] && game->vars->map[i][j + 1] != '1' && tmp_map[i][j + 1] != '0')
-	{
-		tmp_map[i][j + 1] = '0';
-		check_full(game, i, j + 1, tmp_map);
-	}
-	if (game->vars->map[i][j - 1]&& game->vars->map[i][j - 1] != '1' && tmp_map[i][j - 1] != '0')
-	{
-		tmp_map[i][j - 1] = '0';
-		check_full(game, i, j - 1, tmp_map);
-	}
-
-	if (game->vars->map[i][j] != '0'
-		&& game->vars->map[i][j] != '1'
-		&& game->vars->map[i][j] != 'N'
-		&& game->vars->map[i][j] != 'S'
-		&& game->vars->map[i][j] != 'E'
-		&& game->vars->map[i][j] != 'W'
-		&& game->vars->map[i][j] != ' ')
-		tmp_map[i][j] = '0';
-	else
-		tmp_map[i][j] = '1';
-
-}
-
-void	check_edges(t_game *game, int i, int j)
-{
-	char **tmp_map;
-	int i1;
-	int j1;
-
-	tmp_map = malloc (sizeof(char *) * game->vars->line + 1);
-	i1 = 0;
-	while (tmp_map[i1])
-	{
-		tmp_map[i1] = malloc (sizeof(char) * game->vars->column + 1);
-		i1++;
-	}
-	if (game->vars->map[i][j + 1] != '1' && game->vars->map[i][j + 1] != ' ')
-		check_full(game, i , j, tmp_map);
-	else if (game->vars->map[i + 1][j] != '1' && game->vars->map[i + 1][j] != ' ')
-		check_full(game, i , j, tmp_map);
-	else if (game->vars->map[i + 1][j + 1] != '1' && game->vars->map[i + 1][j + 1] != ' ')
-		check_full(game, i, j, tmp_map);
-
-	i1 = 0;
-	j1 = 0;
-	while (tmp_map[i1])
-	{
-		while (tmp_map[i1][j1])
-		{
-			if (tmp_map[i1][j1] == 0)
-				error(game, 1);
-			j1++;
-		}
-		i1++;
-	}
-}
-
 void	check_characters(t_game *game)
 {
 	int	i;
@@ -104,6 +34,7 @@ void	check_characters(t_game *game)
 	while (game->vars->map[i])
 	{
 		j = 0;
+		printf("position %s\n", game->vars->map[i]);
 		while (game->vars->map[i][j])
 		{
 			if (game->vars->map[i][j] == '\n')
@@ -115,10 +46,7 @@ void	check_characters(t_game *game)
 					&& game->vars->map[i][j] != 'N' && game->vars->map[i][j] != 'S'
 					&& game->vars->map[i][j] != 'E' && game->vars->map[i][j] != 'W'
 					&& game->vars->map[i][j] != ' ')
-				{
-					ft_printf("Found correct, position [%d][%d]\n", i, j);
 					error(game, 2);
-				}
 			j++;
 		}
 		i++;
@@ -127,21 +55,36 @@ void	check_characters(t_game *game)
 		error(game, 3);
 }
 
+int	check_edges(t_game *game, char **map)
+{
+	size_t	y;
+	size_t	x;
+
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (ft_strchr("0NSWEDO", map[y][x]) && ((!y || !x || !map[y + 1]
+				|| (x && (map[y][x - 1] == ' ' || map[y][x - 1] == '\0'))
+						|| (x < ft_strlen(map[y]) && (map[y][x + 1] == ' '
+							|| map[y][x + 1] == '\0')))
+					|| ((y && x < (ft_strlen(map[y - 1]) - 1) && (map[y - 1][x]
+						== ' ' || map[y - 1][x] == '\0')) || (map[y + 1]
+						&& (x > (ft_strlen(map[y + 1]) - 1) || (map[y + 1][x]
+						== ' ' || map[y + 1][x] == '\0'))))))
+				error(game, 1);
+		}
+	}
+	return (0);
+}
+
 void	check_errors(t_game *game)
 {
 	int i;
 	int j;
 
-	while (i < game->vars->line)
-	{
-		j = 0;
-		while (j < game->vars->column)
-		{
-			if (game->vars->map[i][j] == '1')
-				check_edges(game, i , j);
-			j++;
-		}
-		i++;
-	}
+	check_edges(game, game->vars->map);
 	check_characters(game);
 }
