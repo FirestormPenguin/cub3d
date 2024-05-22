@@ -6,7 +6,7 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/05/14 17:00:10 by egiubell         ###   ########.fr        #
+#    Updated: 2024/05/22 16:50:57 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/utils/utils.c \
 		$(SRC_DIR)/utils/init_map.c \
 		$(SRC_DIR)/utils/checks_errors.c \
+		$(SRC_DIR)/utils/checks_edges.c \
 		$(SRC_DIR)/utils/exit_manage.c \
 		$(SRC_DIR)/ft_printf/ft_printf.c \
 		$(SRC_DIR)/get_next_line/get_next_line.c \

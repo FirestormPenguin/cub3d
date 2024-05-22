@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/14 17:06:45 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:50:40 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		count_column(char *path);
 
 /*checks_errors*/
 void	check_errors(t_game *game);
+void	check_edges(t_game *game, int i, int j);
 void	checks_vars(t_game *game);
 void	error(t_game *game, int id);
 

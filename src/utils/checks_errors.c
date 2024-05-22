@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/21 23:30:26 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:59:02 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	check_characters(t_game *game)
 	while (game->vars->map[i])
 	{
 		j = 0;
-		printf("position %s\n", game->vars->map[i]);
 		while (game->vars->map[i][j])
 		{
 			if (game->vars->map[i][j] == '\n')
@@ -46,7 +45,10 @@ void	check_characters(t_game *game)
 					&& game->vars->map[i][j] != 'N' && game->vars->map[i][j] != 'S'
 					&& game->vars->map[i][j] != 'E' && game->vars->map[i][j] != 'W'
 					&& game->vars->map[i][j] != ' ')
-					error(game, 2);
+			{
+				ft_printf("invalid character in position x: %d y: %d\n", i, j);
+				error(game, 2);
+			}
 			j++;
 		}
 		i++;
@@ -55,29 +57,21 @@ void	check_characters(t_game *game)
 		error(game, 3);
 }
 
-int	check_edges(t_game *game, char **map)
+void decheck_mtx(t_game *game)
 {
-	size_t	y;
-	size_t	x;
+	int	i;
+	int	j;
 
-	y = -1;
-	while (map[++y])
+	i = -1;
+	while (game->vars->map[++i])
 	{
-		x = -1;
-		while (map[y][++x])
+		j = -1;
+		while (game->vars->map[i][++j])
 		{
-			if (ft_strchr("0NSWEDO", map[y][x]) && ((!y || !x || !map[y + 1]
-				|| (x && (map[y][x - 1] == ' ' || map[y][x - 1] == '\0'))
-						|| (x < ft_strlen(map[y]) && (map[y][x + 1] == ' '
-							|| map[y][x + 1] == '\0')))
-					|| ((y && x < (ft_strlen(map[y - 1]) - 1) && (map[y - 1][x]
-						== ' ' || map[y - 1][x] == '\0')) || (map[y + 1]
-						&& (x > (ft_strlen(map[y + 1]) - 1) || (map[y + 1][x]
-						== ' ' || map[y + 1][x] == '\0'))))))
-				error(game, 1);
+			if (game->vars->map[i][j] == 'C')
+				game->vars->map[i][j] = '0';
 		}
 	}
-	return (0);
 }
 
 void	check_errors(t_game *game)
@@ -85,6 +79,18 @@ void	check_errors(t_game *game)
 	int i;
 	int j;
 
-	check_edges(game, game->vars->map);
+	i = -1;
+	while (game->vars->map[++i])
+	{
+		j = -1;
+		while (game->vars->map[i][++j])
+		{
+			if (game->vars->map[i][j] == '0' || game->vars->map[i][j] == 'N'
+				|| game->vars->map[i][j] == 'S' || game->vars->map[i][j] == 'E'
+				|| game->vars->map[i][j] == 'W')
+				check_edges(game, i , j);
+		}
+	}
 	check_characters(game);
+	decheck_mtx(game);
 }
