@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:13:49 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/14 17:06:45 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:21:54 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	init_map(char *path, t_game *game)
 	i = 0;
 	game->vars->line = count_line(path);
 	game->vars->column = count_column(path);
-	if (!(fd = open(path, O_RDONLY)))
+	fd = open (path, O_RDONLY);
+	if (!fd)
 	{
 		ft_printf("Map not valid!\n");
 		exit(1);

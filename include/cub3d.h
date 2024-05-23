@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/22 16:50:40 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:05:46 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@
 # include "../src/ft_printf/ft_printf.h"
 // # include "./minilibx/mlx.h"
 
-typedef struct s_vars {
+typedef struct s_vars
+{
 	char	**map;
 	int		line;
 	int		column;
 	int		player;
 }	t_vars;
 
-typedef struct s_game {
+typedef struct s_game
+{
 	t_vars	*vars;
 	int		x;
 	int		y;

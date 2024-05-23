@@ -6,7 +6,7 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/05/22 16:50:57 by egiubell         ###   ########.fr        #
+#    Updated: 2024/05/23 16:04:52 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,14 @@ SRC_DIR =	./src
 OBJ_DIR =	./obj
 
 SRC =	$(SRC_DIR)/cub3d.c \
-		$(SRC_DIR)/utils/utils.c \
-		$(SRC_DIR)/utils/init_map.c \
-		$(SRC_DIR)/utils/checks_errors.c \
-		$(SRC_DIR)/utils/checks_edges.c \
-		$(SRC_DIR)/utils/exit_manage.c \
 		$(SRC_DIR)/ft_printf/ft_printf.c \
 		$(SRC_DIR)/get_next_line/get_next_line.c \
 		$(SRC_DIR)/get_next_line/get_next_line_utils.c \
+		$(SRC_DIR)/init_map/init_map.c \
+		$(SRC_DIR)/init_map/checks_errors.c \
+		$(SRC_DIR)/init_map/checks_edges.c \
+		$(SRC_DIR)/utils/utils.c \
+		$(SRC_DIR)/utils/exit_manage.c \
 
 RM =		rm -rf
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))

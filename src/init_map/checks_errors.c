@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/23 15:56:57 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:10:24 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	check_characters(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (game->vars->map[i])
+	i = -1;
+	while (game->vars->map[++i])
 	{
-		j = 0;
-		while (game->vars->map[i][j])
+		j = -1;
+		while (game->vars->map[i][++j])
 		{
 			if (game->vars->map[i][j] == '\n')
 				break ;
@@ -42,22 +42,19 @@ void	check_characters(t_game *game)
 				|| game->vars->map[i][j] == 'E' || game->vars->map[i][j] == 'W')
 				game->vars->player++;
 			if (game->vars->map[i][j] != '0' && game->vars->map[i][j] != '1'
-					&& game->vars->map[i][j] != 'N' && game->vars->map[i][j] != 'S'
-					&& game->vars->map[i][j] != 'E' && game->vars->map[i][j] != 'W'
+					&& game->vars->map[i][j] != 'N'
+					&& game->vars->map[i][j] != 'S'
+					&& game->vars->map[i][j] != 'E'
+					&& game->vars->map[i][j] != 'W'
 					&& game->vars->map[i][j] != ' ')
-			{
-				ft_printf("invalid character in position x: %d y: %d\n", i, j);
 				error(game, 2);
-			}
-			j++;
 		}
-		i++;
 	}
 	if (game->vars->player < 1 || game->vars->player > 1)
 		error(game, 3);
 }
 
-void decheck_mtx(t_game *game)
+void	decheck_mtx(t_game *game)
 {
 	int	i;
 	int	j;
@@ -76,8 +73,8 @@ void decheck_mtx(t_game *game)
 
 void	check_errors(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (game->vars->map[++i])
@@ -88,7 +85,7 @@ void	check_errors(t_game *game)
 			if (game->vars->map[i][j] == '0' || game->vars->map[i][j] == 'N'
 				|| game->vars->map[i][j] == 'S' || game->vars->map[i][j] == 'E'
 				|| game->vars->map[i][j] == 'W')
-				check_edges(game, i , j);
+				check_edges(game, i, j);
 		}
 	}
 	decheck_mtx(game);
