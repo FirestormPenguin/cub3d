@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/22 16:59:02 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:56:57 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	check_errors(t_game *game)
 				check_edges(game, i , j);
 		}
 	}
-	check_characters(game);
 	decheck_mtx(game);
+	check_characters(game);
 }
