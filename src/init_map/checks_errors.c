@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/23 16:10:24 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:28:06 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_characters(t_game *game)
 	int	j;
 
 	i = -1;
-	while (game->vars->map[++i])
+	while (game->vars->map[++i] && i < game->vars->line - 1)
 	{
 		j = -1;
 		while (game->vars->map[i][++j])
@@ -60,7 +60,7 @@ void	decheck_mtx(t_game *game)
 	int	j;
 
 	i = -1;
-	while (game->vars->map[++i])
+	while (game->vars->map[++i] && i < game->vars->line - 1)
 	{
 		j = -1;
 		while (game->vars->map[i][++j])
@@ -77,7 +77,7 @@ void	check_errors(t_game *game)
 	int	j;
 
 	i = -1;
-	while (game->vars->map[++i])
+	while (game->vars->map[++i] && i < game->vars->line - 1)
 	{
 		j = -1;
 		while (game->vars->map[i][++j])
