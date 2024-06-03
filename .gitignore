@@ -3,6 +3,8 @@
 *.swp
 *.swo
 *.out
-minishell
+.nfs*
+cub3d
+obj/
 .DS_Store
 .vscode/
