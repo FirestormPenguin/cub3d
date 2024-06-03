@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:20 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/23 16:05:56 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 01:18:10 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,39 @@ void	init_struct(t_game *game)
 	game->monster_frame = 0;
 }
 
+void	check_path(char *path)
+{
+	int		fd;
+	int		bytes_read;
+	char	buf;
+
+	fd = open (path, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("Error: path not valid!\n");
+		exit(1);
+	}
+	bytes_read = read(fd, &buf, 1);
+	if (bytes_read == -1)
+	{
+		fprintf(stderr, "Error: '%s' is a directory\n", path);
+		close(fd);
+		exit(1);
+	}
+	close (fd);
+}
+
 int	main(int ac, char **av)
 {
 	char	*path;
 	t_game	game;
+	int		fd;
 
 	game.vars = (t_vars *)malloc (sizeof (t_vars));
 	if (ac != 2)
-		return (printf("no vars\n"), 0);
+		return (printf("Number of vars invalid, insert the map path!\n"), 0);
 	path = av[1];
+	check_path(path);
 	init_struct(&game);
 	init_map(path, &game);
 }
