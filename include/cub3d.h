@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/23 16:05:46 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 01:57:12 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	error(t_game *game, int id);
 /*exit_manage*/
 int		close_generic(t_game *game);
 void	free_vars(t_game *game);
+void	free_get();
 
 /*utils*/
 char	*ft_itoa(int n);

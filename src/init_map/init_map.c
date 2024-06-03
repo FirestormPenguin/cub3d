@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:13:49 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/04 01:18:20 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 01:57:02 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	count_column(char *path)
 
 	i = 0;
 	fd = open(path, O_RDONLY);
-	str = get_next_line(fd);
+	str = get_next_line(fd, 0);
 	while (str[i] != '\n')
 	{
 		i++;
@@ -28,7 +28,7 @@ int	count_column(char *path)
 	while (str)
 	{
 		free(str);
-		str = get_next_line(fd);
+		str = get_next_line(fd, 0);
 	}
 	free(str);
 	close (fd);
@@ -43,11 +43,11 @@ int	count_line(char *path)
 
 	i = 0;
 	fd = open(path, O_RDONLY);
-	str = get_next_line(fd);
+	str = get_next_line(fd, 0);
 	while (str)
 	{
 		free(str);
-		str = get_next_line(fd);
+		str = get_next_line(fd, 0);
 		i++;
 	}
 	close (fd);
@@ -67,13 +67,14 @@ int	init_map(char *path, t_game *game)
 	game->vars->map = malloc (sizeof(char *) * game->vars->line + 1);
 	while (i < game->vars->line)
 	{
-		str = get_next_line(fd);
+		str = get_next_line(fd, 0);
 		game->vars->map[i] = str;
 		ft_printf("%s", game->vars->map[i]);
 		i++;
 	}
 	ft_printf("Line: %d\nColumn: %d\n", game->vars->line, game->vars->column);
 	close (fd);
+	free_get();
 	check_errors(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:23:30 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/16 16:24:07 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 01:53:05 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,16 @@ char	*ft_read_to_left_str(int fd, char *left_str)
 	return (left_str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int flag)
 {
 	char		*line;
 	static char	*left_str;
 
+	if (flag == 1)
+	{
+		free(left_str);
+		return (NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	left_str = ft_read_to_left_str(fd, left_str);
