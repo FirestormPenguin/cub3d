@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/04 02:01:31 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 02:05:21 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef struct s_game
 # define FRAMERATE 60
 # define ANIMATIONDELAY 10000
 
+/*small checks*/
+void	check_path(char *path, t_game *game);
+void	check_ac(int ac, t_game *game);
+
+/*utils*/
+char	*ft_itoa(int n);
+
 /*init map*/
 int		init_map(char *path, t_game *game);
 int		count_line(char *path);
@@ -71,8 +78,5 @@ void	error(t_game *game, int id);
 int		close_generic(t_game *game);
 void	free_vars(t_game *game);
 void	free_get(void);
-
-/*utils*/
-char	*ft_itoa(int n);
 
 #endif

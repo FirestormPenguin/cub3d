@@ -6,7 +6,7 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/06/04 01:30:30 by egiubell         ###   ########.fr        #
+#    Updated: 2024/06/04 02:05:38 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/init_map/checks_errors.c \
 		$(SRC_DIR)/init_map/checks_edges.c \
 		$(SRC_DIR)/utils/utils.c \
+		$(SRC_DIR)/utils/small_checks.c \
 		$(SRC_DIR)/utils/exit_manage.c \
 
 RM =		rm -rf
