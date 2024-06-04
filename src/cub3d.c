@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:20 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/04 01:56:44 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 02:00:23 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ void	check_path(char *path, t_game *game)
 	close (fd);
 }
 
+void	check_ac(int ac, t_game *game)
+{
+	if (ac != 2)
+	{
+		free(game->vars);
+		printf("Number of vars invalid, insert the map path!\n");
+		exit (1);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	char	*path;
@@ -60,11 +70,7 @@ int	main(int ac, char **av)
 	int		fd;
 
 	game.vars = (t_vars *)malloc (sizeof (t_vars));
-	if (ac != 2)
-	{
-		free(game.vars);
-		return (printf("Number of vars invalid, insert the map path!\n"), 0);
-	}
+	check_ac(ac, &game);
 	path = av[1];
 	check_path(path, &game);
 	init_struct(&game);

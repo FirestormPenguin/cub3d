@@ -6,13 +6,13 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:58:19 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/04 01:56:38 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 02:00:57 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	free_get()
+void	free_get(void)
 {
 	char	*str_free_get;
 
