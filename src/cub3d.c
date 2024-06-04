@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:20 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/04 02:03:11 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 02:09:57 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	init_struct(t_game *game)
 	game->monster_animation_timer = 0;
 	game->monster_frame = 0;
 }
-
-
 
 int	main(int ac, char **av)
 {
