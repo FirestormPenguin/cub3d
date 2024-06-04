@@ -6,11 +6,23 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 16:08:21 by egiubell          #+#    #+#             */
-/*   Updated: 2024/04/23 16:08:33 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 03:05:36 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+char	*ft_strchr2(const char *s, int c)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (*str && *str != (char)c)
+		str++;
+	if (*str == (char)c)
+		return (str);
+	return (NULL);
+}
 
 char	*format_itoa(int mem, char *str, int size)
 {

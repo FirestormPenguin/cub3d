@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/05/29 18:28:06 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/04 02:22:38 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	error(t_game *game, int id)
 	else if (id == 2)
 		ft_printf("Found invalid character\n");
 	else if (id == 3)
-		ft_printf("Too much players characters\n");
+		ft_printf("Too much or not enough players characters\n");
 	free_vars(game);
 	exit(0);
 }
@@ -40,7 +40,7 @@ void	check_characters(t_game *game)
 				break ;
 			if (game->vars->map[i][j] == 'N' || game->vars->map[i][j] == 'S'
 				|| game->vars->map[i][j] == 'E' || game->vars->map[i][j] == 'W')
-				game->vars->player++;
+				game->vars->player_n++;
 			if (game->vars->map[i][j] != '0' && game->vars->map[i][j] != '1'
 					&& game->vars->map[i][j] != 'N'
 					&& game->vars->map[i][j] != 'S'
@@ -50,7 +50,7 @@ void	check_characters(t_game *game)
 				error(game, 2);
 		}
 	}
-	if (game->vars->player < 1 || game->vars->player > 1)
+	if (game->vars->player_n < 1 || game->vars->player_n > 1)
 		error(game, 3);
 }
 
