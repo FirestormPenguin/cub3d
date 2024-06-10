@@ -6,14 +6,14 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/06/04 02:45:59 by egiubell         ###   ########.fr        #
+#    Updated: 2024/06/10 17:56:57 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =		cub3d
 
-CC =		gcc -g
-FLAGS =		-Wall -Wextra -Werror -I./include -o
+CC =		gcc -g -lm
+FLAGS =		-Wall -Wextra -Werror -I./include
 SRC_DIR =	./src
 OBJ_DIR =	./obj
 
@@ -27,8 +27,11 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/utils/utils.c \
 		$(SRC_DIR)/utils/small_checks.c \
 		$(SRC_DIR)/utils/exit_manage.c \
-		$(SRC_DIR)/init_game/init_game.c \
-		$(SRC_DIR)/init_game/init_player.c \
+		$(SRC_DIR)/raycast/check_raycast.c \
+		$(SRC_DIR)/raycast/ray_lenght.c \
+		$(SRC_DIR)/raycast/ray_lenght_utils.c \
+		$(SRC_DIR)/raycast/set_ray.c \
+		$(SRC_DIR)/raycast/ray_utils.c \
 
 RM =		rm -rf
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
@@ -38,7 +41,7 @@ NORM_FOLDER = ./src ./include
 all: obj_dir $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(CFLAGS)  -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) -o $(NAME) -lm
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

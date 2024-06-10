@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 16:08:21 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/04 03:05:36 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:57:49 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,30 @@ char	*ft_itoa(int n)
 		return (NULL);
 	str[size--] = '\0';
 	return (format_itoa(mem, str, size));
+}
+
+long	ft_atoi(const char *str)
+{
+	int		i;
+	int		sign;
+	long	result;
+
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
+		i++;
+	sign = 1;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	result = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10;
+		result = result + str[i] - '0';
+		i++;
+	}
+	return (result * sign);
 }
