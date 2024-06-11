@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:27 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 07:17:37 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:52:20 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	assets_init(t_game *game)
 	int	x;
 	int	y;
 
-	game->e.img = mlx_xpm_file_to_image(game->mlx, EST_IMG, &x, &y);
+	game->e.img = mlx_xpm_file_to_image(game->mlx, game->ea, &x, &y);
 	game->e.addr = mlx_get_data_addr(game->e.img, &(game->e.bits),
 			&(game->e.line), &(game->e.endian));
-	game->n.img = mlx_xpm_file_to_image(game->mlx, NORD_IMG, &x, &y);
+	game->n.img = mlx_xpm_file_to_image(game->mlx, game->no, &x, &y);
 	game->n.addr = mlx_get_data_addr(game->n.img, &(game->n.bits),
 			&(game->n.line), &(game->n.endian));
-	game->s.img = mlx_xpm_file_to_image(game->mlx, SUD_IMG, &x, &y);
+	game->s.img = mlx_xpm_file_to_image(game->mlx, game->so, &x, &y);
 	game->s.addr = mlx_get_data_addr(game->s.img, &(game->s.bits),
 			&(game->s.line), &(game->s.endian));
-	game->w.img = mlx_xpm_file_to_image(game->mlx, WEST_IMG, &x, &y);
+	game->w.img = mlx_xpm_file_to_image(game->mlx, game->we, &x, &y);
 	game->w.addr = mlx_get_data_addr(game->w.img, &(game->w.bits),
 			&(game->w.line), &(game->w.endian));
 }
@@ -38,12 +38,14 @@ void	ft_floor_n_ceil(t_game *game, int col)
 	i = 0;
 	while (i < 225)
 	{
-		my_mlx_pixel_put(game, col, i, create_trgb(0, 232, 111, 19));
+		my_mlx_pixel_put(game, col, i, create_trgb(0, ft_atoi(game->c_mtx[0]),
+				ft_atoi(game->c_mtx[1]), ft_atoi(game->c_mtx[2])));
 		i++;
 	}
 	while (i < 450)
 	{
-		my_mlx_pixel_put(game, col, i, create_trgb(0, 82, 65, 45));
+		my_mlx_pixel_put(game, col, i, create_trgb(0, ft_atoi(game->f_mtx[0]),
+				ft_atoi(game->f_mtx[1]), ft_atoi(game->f_mtx[2])));
 		i++;
 	}
 }

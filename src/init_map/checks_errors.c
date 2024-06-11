@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/04 02:22:38 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:54:38 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	error(t_game *game, int id)
 		ft_printf("Found invalid character\n");
 	else if (id == 3)
 		ft_printf("Too much or not enough players characters\n");
+	else if (id == 4)
+		ft_printf("No path found\n");
 	free_vars(game);
 	exit(0);
 }
@@ -71,12 +73,35 @@ void	decheck_mtx(t_game *game)
 	}
 }
 
+void	first_last_check(t_game *game)
+{
+	int	i;
+	int	n;
+
+	n = game->vars->line - 1;
+	i = 0;
+	while (game->vars->map[0][i] != '\n')
+	{
+		if (game->vars->map[0][i] != '1' && game->vars->map[0][i] != ' ')
+			error(game, 1);
+		i++;
+	}
+	i = 0;
+	while (game->vars->map[n][i] != '\n')
+	{
+		if (game->vars->map[n][i] != '1' && game->vars->map[n][i] != ' ')
+			error(game, 1);
+		i++;
+	}
+}
+
 void	check_errors(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = -1;
+	first_last_check(game);
 	while (game->vars->map[++i] && i < game->vars->line - 1)
 	{
 		j = -1;

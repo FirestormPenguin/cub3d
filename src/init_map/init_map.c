@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:13:49 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 09:52:55 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:34:26 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,30 @@ int	count_line(char *path)
 	return (i);
 }
 
-void	check_mtx(t_game *game)
+void	extrapolate_map(t_game *game)
 {
 	int	i;
 	int	j;
 	int	l;
 
 	i = -1;
-	while (game->vars->mtx[++i] && i < game->vars->line - 1)
+	while (game->vars->mtx[++i])
 	{
 		j = -1;
-		while (game->vars->mtx[i][++j])
+		while (game->vars->mtx[i][++j] && i < game->vars->mtx_line - 1)
 		{
-			if (game->vars->mtx[i][j] == 'N' && game->vars->mtx[i][j + 1] == 'O')
+			l = 0;
+			if (game->vars->mtx[i][j] == '1' && game->vars->mtx[i][j + 1] == '1'
+				&& game->vars->mtx[i][j + 2] == '1' &&
+				game->vars->mtx[i][j + 3] == '1')
 			{
-				while (game->vars->mtx[i][j] != '.')
-					i++;
-				l = 0;
-				while (game->vars->mtx[i][j])
-				{
-					game->no[l] = game->vars->mtx[i][j];
-					j++;
-					l++;
-				}
+				game->vars->line = game->vars->mtx_line - i;
+				game->vars->map = ft_calloc(sizeof(char *),
+						(game->vars->mtx_line - i));
+				while (game->vars->mtx[i])
+					game->vars->map[l++] = game->vars->mtx[i++];
+				game->vars->map[l--] = NULL;
+				return ;
 			}
 		}
 	}
@@ -92,18 +93,19 @@ int	init_map(char *path, t_game *game)
 	game->vars->mtx_line = count_line(path);
 	game->vars->mtx_column = count_column(path);
 	fd = open (path, O_RDONLY);
-	game->vars->mtx = malloc (sizeof(char *) * game->vars->mtx_line + 1);
+	game->vars->mtx = ft_calloc (sizeof(char *), game->vars->mtx_line + 1);
 	while (i < game->vars->mtx_line)
 	{
 		str = get_next_line(fd, 0);
 		game->vars->mtx[i] = str;
-		ft_printf("%s", game->vars->mtx[i]);
 		i++;
 	}
-	ft_printf("Line: %d\nColumn: %d\n", game->vars->mtx_line, game->vars->mtx_column);
 	close (fd);
 	free_get();
-	check_mtx(game);
+	check_paths(game);
+	clean_paths(game);
+	check_colors(game);
+	extrapolate_map(game);
 	check_errors(game);
 	set_player_pos(game);
 	return (0);

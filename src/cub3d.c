@@ -6,11 +6,33 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:20 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 01:28:47 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:46:16 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*dest;
+	size_t			i;
+
+	dest = s;
+	i = 0;
+	while (i++ < n)
+		*dest++ = 0;
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (ptr);
+	ft_bzero(ptr, size * count);
+	return (ptr);
+}
 
 void	init_struct(t_game *game)
 {
@@ -55,6 +77,5 @@ int	main(int ac, char **av)
 	mlx_hook(game.win, 2, 1L << 0, controls_working, &game);
 	mlx_key_hook(game.win, controls_working, &game);
 	mlx_loop(game.mlx);
-	free_vars(&game);
 	return (0);
 }

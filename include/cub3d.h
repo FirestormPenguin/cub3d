@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 09:51:35 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:46:10 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ typedef struct s_game
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	char		no[500];
-	char		so[500];
-	char		ea[500];
-	char		we[500];
-	char		f[500];
-	char		c[500];
+	char		*no;
+	char		*so;
+	char		*ea;
+	char		*we;
+	char		*f;
+	char		**f_mtx;
+	char		*c;
+	char		**c_mtx;
 	int			x;
 	int			y;
 	int			ray_uncasted;
@@ -133,6 +135,21 @@ int		init_map(char *path, t_game *game);
 int		count_line(char *path);
 int		count_column(char *path);
 
+/*check_paths*/
+void	check_paths(t_game *game);
+void	check_no(t_game *game);
+void	check_so(t_game *game);
+void	check_ea(t_game *game);
+void	check_we(t_game *game);
+
+/*clean_paths*/
+void	clean_paths(t_game *game);
+
+/*check_colors*/
+void	check_colors(t_game *game);
+void	check_f(t_game *game);
+void	check_c(t_game *game);
+
 /*checks_errors*/
 void	check_errors(t_game *game);
 void	check_edges(t_game *game, int i, int j);
@@ -189,5 +206,11 @@ int		ft_d(t_game *game);
 /*player_utils*/
 void	set_player_pos(t_game *game);
 void	player_dir(t_game *game, char c);
+
+/*ft_split*/
+char	**ft_split(char const *s, char c);
+
+/*calloc*/
+void	*ft_calloc(size_t count, size_t size);
 
 #endif

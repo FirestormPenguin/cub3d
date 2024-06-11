@@ -6,7 +6,7 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/06/11 01:37:18 by egiubell         ###   ########.fr        #
+#    Updated: 2024/06/11 14:29:41 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,13 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/init_map/checks_errors.c \
 		$(SRC_DIR)/init_map/checks_edges.c \
 		$(SRC_DIR)/init_map/player_utils.c \
+		$(SRC_DIR)/init_map/check_colors.c \
+		$(SRC_DIR)/init_map/check_paths.c \
+		$(SRC_DIR)/init_map/clean_paths.c \
 		$(SRC_DIR)/utils/utils.c \
 		$(SRC_DIR)/utils/small_checks.c \
 		$(SRC_DIR)/utils/exit_manage.c \
+		$(SRC_DIR)/utils/ft_split.c \
 		$(SRC_DIR)/raycast/check_raycast.c \
 		$(SRC_DIR)/raycast/ray_lenght.c \
 		$(SRC_DIR)/raycast/ray_lenght_utils.c \
@@ -46,7 +50,7 @@ all: obj_dir $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C minilibx/
-	@$(CC) $(OBJ) $(CFLAGS) $(MLX_LIBS) -o $(NAME) 
+	@$(CC) $(OBJ) $(CFLAGS) $(MLX_LIBS) -o $(NAME)
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
