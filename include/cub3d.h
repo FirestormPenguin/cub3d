@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 06:58:17 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:51:35 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct s_player
 
 typedef struct s_vars
 {
+	char	**mtx;
+	int		mtx_line;
+	int		mtx_column;
 	char	**map;
 	int		line;
 	int		column;
@@ -67,6 +70,12 @@ typedef struct s_game
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	char		no[500];
+	char		so[500];
+	char		ea[500];
+	char		we[500];
+	char		f[500];
+	char		c[500];
 	int			x;
 	int			y;
 	int			ray_uncasted;
