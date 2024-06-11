@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:14 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/10 17:24:01 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 02:18:55 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	check_raycast(t_game *game)
 		ft_ray_in_plane(game, i);
 		game->player.mov_dir++;
 	}
-	// mlx_put_image_to_window(game->mlx, game->win,
-	// 	game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win,
+		game->img, 0, 0);
 }

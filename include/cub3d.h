@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/10 17:58:01 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 02:18:23 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,6 @@ typedef struct s_vars
 	double	player_pos_x;
 	double	player_pos_y;
 }	t_vars;
-
-typedef struct s_infos
-{
-	int				what;
-	char			**str;
-	char			**color;
-	struct s_infos	*next;
-}	t_infos;
 
 typedef struct s_img
 {
@@ -101,22 +93,26 @@ typedef struct s_game
 	t_img		s;
 	t_img		e;
 	t_img		w;
-	t_infos		*info_list;
 	t_vars		*vars;
 	t_player	player;
 }	t_game;
-
-# define TERRAIN	"./assets/terrain.xpm"
 
 # define W 119
 # define A 97
 # define D 100
 # define S 115
+# define LEFT 65361
+# define RIGHT 65363
 # define ESC 65307
 # define TILESIZE 128
 
 # define CONST_RAD 0.001454441043329
 # define PI 3.141592653589793
+
+# define EST_IMG "assets/east_texture.xpm"
+# define NORD_IMG "assets/north_texture.xpm"
+# define SUD_IMG "assets/south_texture.xpm"
+# define WEST_IMG "assets/west_texture.xpm"
 
 /*small checks*/
 void	check_path(char *path, t_game *game);
@@ -144,7 +140,7 @@ void	free_vars(t_game *game);
 void	free_get(void);
 
 /*check_raycast*/
-void	check_reycast(t_game *game);
+void	check_raycast(t_game *game);
 void	ft_ray_in_plane(t_game *game, int i);
 
 /*set_ray*/
@@ -169,9 +165,24 @@ void	ray_loop_b(t_game *game, double q, double m, int dir);
 
 /*ray_utils*/
 void	ft_fakeray(t_game *game, int i);
-int	get_pixel(t_game *game, int x, int y);
+int		get_pixel(t_game *game, int x, int y);
 void	ft_floor_n_ceil(t_game *game, int col);
-t_infos	*find_in_list(t_infos *infos, int what);
 void	assets_init(t_game *game);
+
+/*mlx utils*/
+int		my_mlx_pixel_put(t_game *game, int x, int y, int color);
+int		create_trgb(int t, int r, int g, int b);
+int		iswhite(char c);
+
+/*hooks*/
+int		controls_working(int command, t_game *game);
+int		ft_a(t_game *game);
+int		ft_w(t_game *game);
+int		ft_s(t_game *game);
+int		ft_d(t_game *game);
+
+/*player_utils*/
+void	set_player_pos(t_game *game);
+void	player_dir(t_game *game, char c);
 
 #endif

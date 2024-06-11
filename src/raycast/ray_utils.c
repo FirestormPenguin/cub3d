@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:27 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/10 18:01:27 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 02:05:13 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,54 +17,33 @@ void	assets_init(t_game *game)
 	int	x;
 	int	y;
 
-	game->e.img = mlx_xpm_file_to_image(game->mlx,
-			(find_in_list(game->info_list, 2))->str[1], &x, &y);
-	game->e.addr = mlx_get_game_addr(game->e.img, &(game->e.bits),
+	game->e.img = mlx_xpm_file_to_image(game->mlx, EST_IMG, &x, &y);
+	game->e.addr = mlx_get_data_addr(game->e.img, &(game->e.bits),
 			&(game->e.line), &(game->e.endian));
-	game->n.img = mlx_xpm_file_to_image(game->mlx,
-			(find_in_list(game->info_list, 3))->str[1], &x, &y);
-	game->n.addr = mlx_get_game_addr(game->n.img, &(game->n.bits),
+	game->n.img = mlx_xpm_file_to_image(game->mlx, NORD_IMG, &x, &y);
+	game->n.addr = mlx_get_data_addr(game->n.img, &(game->n.bits),
 			&(game->n.line), &(game->n.endian));
-	game->s.img = mlx_xpm_file_to_image(game->mlx,
-			(find_in_list(game->info_list, 4))->str[1], &x, &y);
-	game->s.addr = mlx_get_game_addr(game->s.img, &(game->s.bits),
+	game->s.img = mlx_xpm_file_to_image(game->mlx, SUD_IMG, &x, &y);
+	game->s.addr = mlx_get_data_addr(game->s.img, &(game->s.bits),
 			&(game->s.line), &(game->s.endian));
-	game->w.img = mlx_xpm_file_to_image(game->mlx,
-			(find_in_list(game->info_list, 5))->str[1], &x, &y);
-	game->w.addr = mlx_get_game_addr(game->w.img, &(game->w.bits),
+	game->w.img = mlx_xpm_file_to_image(game->mlx, WEST_IMG, &x, &y);
+	game->w.addr = mlx_get_data_addr(game->w.img, &(game->w.bits),
 			&(game->w.line), &(game->w.endian));
-}
-
-t_infos	*find_in_list(t_infos *infos, int what)
-{
-	t_infos	*tmp;
-
-	tmp = infos;
-	while (tmp->what != what)
-		tmp = tmp->next;
-	return (tmp);
 }
 
 void	ft_floor_n_ceil(t_game *game, int col)
 {
 	int		i;
-	t_infos	*floor;
-	t_infos	*ceil;
 
 	i = 0;
-	floor = find_in_list(game->info_list, 7);
-	ceil = find_in_list(game->info_list, 6);
 	while (i < 225)
 	{
-		my_mlx_pixel_put(game, col, i, create_trgb(0, (ft_atoi(ceil->color[0])),
-				(ft_atoi(ceil->color[1])), (ft_atoi(ceil->color[2]))));
+		my_mlx_pixel_put(game, col, i, create_trgb(0, 255, 255, 0));
 		i++;
 	}
 	while (i < 450)
 	{
-		my_mlx_pixel_put(game, col, i, create_trgb(0,
-				(ft_atoi(floor->color[0])), (ft_atoi(floor->color[1])),
-				(ft_atoi(floor->color[2]))));
+		my_mlx_pixel_put(game, col, i, create_trgb(0, 100, 100, 100));
 		i++;
 	}
 }

@@ -6,14 +6,14 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/06/10 17:56:57 by egiubell         ###   ########.fr        #
+#    Updated: 2024/06/11 01:37:18 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =		cub3d
 
 CC =		gcc -g -lm
-FLAGS =		-Wall -Wextra -Werror -I./include
+FLAGS =		-Wall -Wextra -Werror -I./include -02
 SRC_DIR =	./src
 OBJ_DIR =	./obj
 
@@ -24,6 +24,7 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/init_map/init_map.c \
 		$(SRC_DIR)/init_map/checks_errors.c \
 		$(SRC_DIR)/init_map/checks_edges.c \
+		$(SRC_DIR)/init_map/player_utils.c \
 		$(SRC_DIR)/utils/utils.c \
 		$(SRC_DIR)/utils/small_checks.c \
 		$(SRC_DIR)/utils/exit_manage.c \
@@ -32,16 +33,20 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/raycast/ray_lenght_utils.c \
 		$(SRC_DIR)/raycast/set_ray.c \
 		$(SRC_DIR)/raycast/ray_utils.c \
+		$(SRC_DIR)/mlx_utils/hooks.c \
+		$(SRC_DIR)/mlx_utils/mlx_utils.c \
 
 RM =		rm -rf
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 NORMI = norminette
 NORM_FOLDER = ./src ./include
+MLX_LIBS = -L./minilibx -lmlx -L/usr/X11R6/lib -lXext -lX11 -lm -lbsd
 
 all: obj_dir $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(CFLAGS) -o $(NAME) -lm
+	@make -C minilibx/
+	@$(CC) $(OBJ) $(CFLAGS) $(MLX_LIBS) -o $(NAME) 
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
