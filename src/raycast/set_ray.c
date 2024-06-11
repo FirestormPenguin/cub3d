@@ -6,18 +6,16 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:31 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/10 17:26:53 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 07:08:55 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/*
-colacola la distanza tra il punto del muro e il PIANO dl giocatore,
-quindievita il fisheye effect.
+/* colacola la distanza tra il punto del muro e il PIANO del giocatore,
+quindi evita il fisheye effect.
 Hypo = la distanza effettiva tra punto e giocatore,
-quindi il ray trovato prima.
-*/
+quindi il ray trovato prima. */
 double	ft_ray_on_plane(t_game *game, double hypo_lenght)
 {
 	double	rad_hyp;
@@ -28,10 +26,8 @@ double	ft_ray_on_plane(t_game *game, double hypo_lenght)
 	return (sin(rad_hyp) * hypo_lenght);
 }
 
-/*
-setta il ray nel caso in cui la retta sia direzionata
-sul primo quadrante
-*/
+/* setta il ray nel caso in cui la retta sia direzionata
+sul primo quadrante */
 void	ft_set_ray_to_1079(t_game *game, double q, double m, int i)
 {
 	game->ray_lenght = ft_ray_on_plane(game,
@@ -43,10 +39,8 @@ void	ft_set_ray_to_1079(t_game *game, double q, double m, int i)
 	ft_fakeray(game, i);
 }
 
-/*
-setta il ray nel caso in cui la retta sia direzionata
-sul secondo quadrante
-*/
+/* setta il ray nel caso in cui la retta sia direzionata
+sul secondo quadrante */
 void	ft_set_ray_to_2159(t_game *game, double q, double m, int i)
 {
 	game->ray_lenght = ft_ray_on_plane(game,
@@ -58,10 +52,8 @@ void	ft_set_ray_to_2159(t_game *game, double q, double m, int i)
 	ft_fakeray(game, i);
 }
 
-/*
-setta il ray nel caso in cui la retta sia direzionata
-sul terzo quadrante
-*/
+/* setta il ray nel caso in cui la retta sia direzionata
+sul terzo quadrante */
 void	ft_set_ray_to_3239(t_game *game, double q, double m, int i)
 {
 	game->ray_lenght = ft_ray_on_plane(game,
@@ -73,10 +65,8 @@ void	ft_set_ray_to_3239(t_game *game, double q, double m, int i)
 	ft_fakeray(game, i);
 }
 
-/*
-setta il ray nel caso in cui la retta sia direzionata
-sul quarto quadrante
-*/
+/* setta il ray nel caso in cui la retta sia direzionata
+sul quarto quadrante */
 void	ft_set_ray_after_3239(t_game *game, double q, double m, int i)
 {
 	game->ray_lenght = ft_ray_on_plane(game,

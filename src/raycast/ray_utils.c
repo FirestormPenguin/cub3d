@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:27 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 02:05:13 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 07:17:37 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	ft_floor_n_ceil(t_game *game, int col)
 	i = 0;
 	while (i < 225)
 	{
-		my_mlx_pixel_put(game, col, i, create_trgb(0, 255, 255, 0));
+		my_mlx_pixel_put(game, col, i, create_trgb(0, 232, 111, 19));
 		i++;
 	}
 	while (i < 450)
 	{
-		my_mlx_pixel_put(game, col, i, create_trgb(0, 100, 100, 100));
+		my_mlx_pixel_put(game, col, i, create_trgb(0, 82, 65, 45));
 		i++;
 	}
 }

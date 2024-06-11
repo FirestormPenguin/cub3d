@@ -6,17 +6,15 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:20 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/10 17:04:33 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 07:07:08 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/*
-ritorna la lunghezza del ray sul primo quadrante, setta coord ray x e y.
+/*ritorna la lunghezza del ray sul primo quadrante, setta coord ray x e y.
 ovvero del punto di collisione tra ray e muro
-il primo quadrante parte dalla retta numero 1 alla 1079
-*/
+il primo quadrante parte dalla retta numero 0 alla 1079*/
 double	ft_ray_lenght_to_1079(t_game *game, double q, double m)
 {
 	game->hypotena = -1;
@@ -35,11 +33,9 @@ double	ft_ray_lenght_to_1079(t_game *game, double q, double m)
 	return (0);
 }
 
-/*
-ritorna la lunghezza del ray sul secondo quadrante, setta coord ray x e y.
+/*ritorna la lunghezza del ray sul secondo quadrante, setta coord ray x e y.
 ovvero del punto di collisione tra ray e muro
-il primo quadrante parte dalla retta numero 1080 alla 2159
-*/
+il primo quadrante parte dalla retta numero 1080 alla 2159*/
 double	ft_ray_lenght_to_2159(t_game *game, double q, double m)
 {
 	game->hypotena = -1;

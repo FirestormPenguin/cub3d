@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 02:18:23 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 06:58:17 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_game
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-
 	int			x;
 	int			y;
 	int			ray_uncasted;
@@ -76,19 +75,16 @@ typedef struct s_game
 	double		ray_y;
 	double		rad_p;
 	double		rad_ray;
-
 	int			newx1a;
 	double		newya;
 	int			newy1b;
 	double		newxb;
 	double		hypotena;
 	double		hypotenb;
-
 	int			map_i;
 	int			map_j;
 	int			x_arrow;
 	int			y_arrow;
-
 	t_img		n;
 	t_img		s;
 	t_img		e;

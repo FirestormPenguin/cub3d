@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:23 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/10 17:04:39 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 07:06:29 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int	ft_floor(double i)
 	return ((int)floor(d));
 }
 
-/*
-serve per sostituire i controlli troppo lunghi,
+/*serve per sostituire i controlli troppo lunghi,
 e setta ray x e y con le coord. di a;
 dir è un modificatore che può cambiere il risultato dei controlli,
-il suo valore dipende dalla direzione della semiretta:
-*/
+il suo valore dipende dalla direzione della semiretta*/
 int	control_a(t_game *game, int dir)
 {
 	if ((game->vars->map[ft_floor(game->newya)][game->newx1a - dir] == '1'))
@@ -39,12 +37,10 @@ int	control_a(t_game *game, int dir)
 		return (0);
 }
 
-/*
-serve per sostituire i controlli troppo lunghi,
+/*serve per sostituire i controlli troppo lunghi,
 e setta ray x e y con le coord. di b;
 dir è un modificatore che può cambiere il risultato dei controlli,
-il suo valore dipende dalla direzione della semiretta:
-*/
+il suo valore dipende dalla direzione della semiretta:*/
 int	control_b(t_game *game, int dir)
 {
 	if (((game->vars->map[game->newy1b - dir][ft_floor(game->newxb)] == '1')))

@@ -6,13 +6,14 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:14 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 02:18:55 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/11 07:25:16 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/* trova m e q di un ray, smista il ray in base alla sua direzione ed
+/* y = mx + q
+trova m e q di un ray, smista il ray in base alla sua direzione ed
 esegue una funzione a parte, ne esiste una per ogni direzione.
 i numeri sono in ordine di quadrante, il piano e' diviso in 4320 rette
 (720 è la risoluzione, 720 * (360 / 60) = 4320)
@@ -34,7 +35,8 @@ void	ft_ray_in_plane(t_game *game, int i)
 		ft_set_ray_after_3239(game, q, m, i);
 }
 
-/* controlla ogni singolo ray per un totale di 720 per frame */
+/* controlla ogni singolo ray per un totale di 720 per ogni
+instanza di "visuale"*/
 void	check_raycast(t_game *game)
 {
 	int	i;
