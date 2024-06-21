@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 02:02:51 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 04:13:11 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 05:31:37 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	check_path(char *path, t_game *game)
 	fd = open (path, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Error\npath not valid!\n");
+		ft_printf("Error\nPath not valid!\n");
 		free(game->vars);
 		exit(1);
 	}
 	bytes_read = read(fd, &buf, 1);
 	if (bytes_read == -1)
 	{
-		fprintf(stderr, "Error\n'%s' is a directory\n", path);
+		ft_printf("Error\n'%s' is a directory\n", path);
 		close(fd);
 		free(game->vars);
 		exit(1);
@@ -41,7 +41,7 @@ void	check_ac(int ac, t_game *game)
 	if (ac != 2)
 	{
 		free(game->vars);
-		printf("Error\n Number of vars invalid, insert the map path!\n");
+		ft_printf("Error\nNumber of vars invalid, insert the map path!\n");
 		exit (1);
 	}
 }
