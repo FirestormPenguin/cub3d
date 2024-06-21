@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:13:49 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 13:02:02 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:16:40 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ void	extrapolate_map(t_game *game)
 				game->vars->mtx[i][j + 3] == '1')
 			{
 				game->vars->line = game->vars->mtx_line - i;
-				game->vars->map = ft_calloc(sizeof(char *),
-						(game->vars->mtx_line - i));
+				game->vars->map = ft_calloc(8, (game->vars->mtx_line - i));
 				while (game->vars->mtx[i])
 					game->vars->map[l++] = game->vars->mtx[i++];
 				game->vars->map[l--] = NULL;

@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:58:19 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 12:36:01 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:10:32 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	mtx_len(char **mtx)
 	int	i;
 
 	i = 0;
-	while(mtx[i])
+	while (mtx[i])
 		i++;
 	return (i);
 }
