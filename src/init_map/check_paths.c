@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:05:50 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 17:52:53 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 12:43:56 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_no(t_game *game)
 	while (game->vars->mtx[++i])
 	{
 		j = -1;
-		while (game->vars->mtx[i][++j] != '\n')
+		while (game->vars->mtx[i][j + 1] && game->vars->mtx[i][++j] != '\n')
 		{
 			if (game->vars->mtx[i][j] == 'N' &&
 				game->vars->mtx[i][j + 1] == 'O')
@@ -50,7 +50,7 @@ void	check_so(t_game *game)
 	while (game->vars->mtx[++i])
 	{
 		j = -1;
-		while (game->vars->mtx[i][++j] != '\n')
+		while (game->vars->mtx[i][j + 1] && game->vars->mtx[i][++j] != '\n')
 		{
 			if (game->vars->mtx[i][j] == 'S' &&
 				game->vars->mtx[i][j + 1] == 'O')
@@ -79,7 +79,7 @@ void	check_ea(t_game *game)
 	while (game->vars->mtx[++i])
 	{
 		j = -1;
-		while (game->vars->mtx[i][++j] != '\n')
+		while (game->vars->mtx[i][j + 1] && game->vars->mtx[i][++j] != '\n')
 		{
 			if (game->vars->mtx[i][j] == 'E' &&
 				game->vars->mtx[i][j + 1] == 'A')
@@ -108,7 +108,7 @@ void	check_we(t_game *game)
 	while (game->vars->mtx[++i])
 	{
 		j = -1;
-		while (game->vars->mtx[i][++j] != '\n')
+		while (game->vars->mtx[i][j + 1] && game->vars->mtx[i][++j] != '\n')
 		{
 			if (game->vars->mtx[i][j] == 'W' &&
 				game->vars->mtx[i][j + 1] == 'E')

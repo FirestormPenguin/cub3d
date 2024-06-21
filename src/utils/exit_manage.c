@@ -6,11 +6,21 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:58:19 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 03:53:46 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 12:36:01 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+int	mtx_len(char **mtx)
+{
+	int	i;
+
+	i = 0;
+	while(mtx[i])
+		i++;
+	return (i);
+}
 
 void	free_get(void)
 {
@@ -23,16 +33,22 @@ void	free_mtx_colors(t_game *game)
 {
 	if (game->f_mtx)
 	{
-		free(game->f_mtx[0]);
-		free(game->f_mtx[1]);
-		free(game->f_mtx[2]);
+		if (mtx_len(game->f_mtx) <= 3 && game->f_mtx[0])
+			free(game->f_mtx[0]);
+		if (mtx_len(game->f_mtx) <= 3 && game->f_mtx[1])
+			free(game->f_mtx[1]);
+		if (mtx_len(game->f_mtx) <= 3 && game->f_mtx[2])
+			free(game->f_mtx[2]);
 		free(game->f_mtx);
 	}
 	if (game->c_mtx)
 	{
-		free(game->c_mtx[0]);
-		free(game->c_mtx[1]);
-		free(game->c_mtx[2]);
+		if (mtx_len(game->c_mtx) <= 3 && game->c_mtx[0])
+			free(game->c_mtx[0]);
+		if (mtx_len(game->c_mtx) <= 3 && game->c_mtx[1])
+			free(game->c_mtx[1]);
+		if (mtx_len(game->c_mtx) == 3 && game->c_mtx[2])
+			free(game->c_mtx[2]);
 		free(game->c_mtx);
 	}
 }
@@ -49,7 +65,8 @@ void	free_vars(t_game *game)
 		i++;
 	}
 	free(game->vars->mtx);
-	free(game->vars->map);
+	if (game->vars->map)
+		free(game->vars->map);
 	free(game->vars);
 	free_mtx_colors(game);
 }

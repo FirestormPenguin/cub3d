@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:13:49 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 04:03:13 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:02:02 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	extrapolate_map(t_game *game)
 			}
 		}
 	}
+	error(game, 6);
 }
 
 int	init_map(char *path, t_game *game)

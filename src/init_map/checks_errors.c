@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 04:46:23 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 12:58:22 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	error(t_game *game, int id)
 		ft_printf("Texture problem, absent or incorrect\n");
 	else if (id == 5)
 		ft_printf("Colors not valid, too big or characters invalid\n");
+	else if (id == 6)
+		ft_printf("Map error\n");
 	free_vars(game);
 	exit(0);
 }

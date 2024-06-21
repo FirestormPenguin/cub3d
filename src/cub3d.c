@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:20 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 05:18:58 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 12:30:49 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_struct(t_game *game)
 	game->ray_uncasted = 0;
 	game->f_mtx = NULL;
 	game->c_mtx = NULL;
+	game->vars->map = NULL;
 }
 
 int	main(int ac, char **av)
