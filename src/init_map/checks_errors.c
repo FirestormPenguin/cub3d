@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:19:36 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 16:54:38 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 04:46:23 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	error(t_game *game, int id)
 	else if (id == 3)
 		ft_printf("Too much or not enough players characters\n");
 	else if (id == 4)
-		ft_printf("No path found\n");
+		ft_printf("Texture problem, absent or incorrect\n");
+	else if (id == 5)
+		ft_printf("Colors not valid, too big or characters invalid\n");
 	free_vars(game);
 	exit(0);
 }

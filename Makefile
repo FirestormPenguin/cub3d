@@ -6,7 +6,7 @@
 #    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 15:24:26 by egiubell          #+#    #+#              #
-#    Updated: 2024/06/11 18:39:09 by egiubell         ###   ########.fr        #
+#    Updated: 2024/06/21 05:02:38 by egiubell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/init_map/check_colors.c \
 		$(SRC_DIR)/init_map/check_paths.c \
 		$(SRC_DIR)/init_map/clean_paths.c \
+		$(SRC_DIR)/init_map/clean_colors.c \
+		$(SRC_DIR)/init_map/check_paths_texture.c \
 		$(SRC_DIR)/utils/utils.c \
+		$(SRC_DIR)/utils/utils2.c \
 		$(SRC_DIR)/utils/small_checks.c \
 		$(SRC_DIR)/utils/exit_manage.c \
 		$(SRC_DIR)/utils/ft_split.c \
@@ -39,6 +42,7 @@ SRC =	$(SRC_DIR)/cub3d.c \
 		$(SRC_DIR)/raycast/ray_utils.c \
 		$(SRC_DIR)/mlx_utils/hooks.c \
 		$(SRC_DIR)/mlx_utils/mlx_utils.c \
+		
 
 RM =		rm -rf
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))

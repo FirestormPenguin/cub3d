@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:24 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 17:46:10 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 05:02:58 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,10 @@ char	*ft_itoa(int n);
 char	*ft_strchr2(const char *s, int c);
 long	ft_atoi(const char *str);
 
+/*utils2*/
+int		ft_isdigit(char **mtx);
+int		ft_isrgb(char **mtx);
+
 /*init map*/
 int		init_map(char *path, t_game *game);
 int		count_line(char *path);
@@ -144,6 +148,9 @@ void	check_we(t_game *game);
 
 /*clean_paths*/
 void	clean_paths(t_game *game);
+
+/*clean_colors*/
+void	clean_colors(t_game *game);
 
 /*check_colors*/
 void	check_colors(t_game *game);
@@ -212,5 +219,11 @@ char	**ft_split(char const *s, char c);
 
 /*calloc*/
 void	*ft_calloc(size_t count, size_t size);
+
+/*check_paths_texture*/
+void	check_paths_texture(t_game *game);
+
+/*check_paths_colors*/
+void	check_paths_colors(t_game *game);
 
 #endif

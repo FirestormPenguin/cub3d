@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:13:49 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 18:34:26 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 04:03:13 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	init_map(char *path, t_game *game)
 	check_paths(game);
 	clean_paths(game);
 	check_colors(game);
+	check_paths_texture(game);
 	extrapolate_map(game);
 	check_errors(game);
 	set_player_pos(game);

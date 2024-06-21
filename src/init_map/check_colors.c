@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:12:39 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/11 17:54:50 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/06/21 05:19:09 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,20 @@ void	check_c(t_game *game)
 
 void	check_colors(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	check_f(game);
 	check_c(game);
 	game->f_mtx = ft_split(game->f, ',');
 	game->c_mtx = ft_split(game->c, ',');
+	while (game->f_mtx[i] && game->c_mtx[i])
+		i++;
+	if (i < 3)
+		error(game, 5);
+	clean_colors(game);
+	if (ft_isdigit(game->f_mtx) || ft_isdigit(game->c_mtx))
+		error(game, 5);
+	if (ft_isrgb(game->f_mtx) || ft_isrgb(game->c_mtx))
+		error(game, 5);
 }
