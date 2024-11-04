@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:22:20 by egiubell          #+#    #+#             */
-/*   Updated: 2024/06/21 12:30:49 by egiubell         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:40:22 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int	main(int ac, char **av)
 	mlx_hook(game.win, 2, 1L << 0, controls_working, &game);
 	mlx_key_hook(game.win, controls_working, &game);
 	mlx_loop(game.mlx);
+	
 	return (0);
 }
